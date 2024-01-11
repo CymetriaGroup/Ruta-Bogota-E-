@@ -5,38 +5,39 @@ import { ForgotComponent } from './auth/pages/forgot/forgot.component';
 import { ResetComponent } from './auth/pages/reset/reset.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 
-
 const routes: Routes = [
   {
     path: '',
-    component: AuthComponent
+    component: AuthComponent,
   },
   {
     path: 'forgot-password',
-    component: ForgotComponent
+    component: ForgotComponent,
   },
   {
     path: 'reset-password/:uid/:token',
-    component: ResetComponent
+    component: ResetComponent,
   },
   {
     path: 'diagnostic',
-    loadChildren: () => import('./diagnostic/diagnostic.module').then(m => m.DiagnosticModule),
+    loadChildren: () =>
+      import('./diagnostic/diagnostic.module').then((m) => m.DiagnosticModule),
   },
   {
     path: 'platform',
-    loadChildren: () => import('./platform/platform.module').then(m => m.PlatformModule),
-    canActivate: [AuthGuard],
-    canLoad: [AuthGuard]
+    loadChildren: () =>
+      import('./platform/platform.module').then((m) => m.PlatformModule),
+    // canActivate: [AuthGuard],
+    // canLoad: [AuthGuard]
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
