@@ -1,0 +1,122 @@
+<div class="container">
+
+  <div *ngIf="!active">
+    <div class="text-center">
+      <div>
+        <img class="img-fluid" src="./assets/img/404.png" />
+      </div>
+      <div class="text-center mt-3">
+        <h3>
+          Recuerda que para participar en Conexiones de Mercado debes tener mínimo <strong>500</strong> puntos.<br />Los mismos se logran recorriendo toda la Academia E.
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="active">
+    <div class="mt-5">
+      <app-header title="Conexiones*"></app-header>
+      <div class="mb-3">
+        <small class="f-13">
+          <i class="fas fa-exclamation-triangle mr-1 yellow"></i>
+          <strong>NOTA IMPORTANTE:</strong> Te invitamos a estar atent@ a los espacios de conexión, te estaremos avisando sobre las aperturas por mailing y SMS, recuerda que para las actividades presenciales debes presentar el carnet de vacunación.
+        </small>
+      </div>
+      <app-table-connections
+        *ngIf="getConnectionsActives().length"
+        (onSignUpConnection)="signUpConnection($event)"
+        [connections]="getConnectionsActives()"
+        kind="connections">
+      </app-table-connections>
+      <div class="empty" *ngIf="!getConnectionsActives().length">
+        No hay conexiones disponibles
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <app-header title="Conexiones agendadas"></app-header>
+      <div class="mb-3">
+        <small class="f-13">
+          <i class="fas fa-exclamation-triangle mr-1 yellow"></i>
+          <strong>NOTA IMPORTANTE:</strong>  Recuerda que debes ingresar el código de 6 dígitos que te dieron en la conexión para reclamar 50 puntos.
+        </small>
+      </div>
+      <app-table-connections
+        *ngIf="registeredConnections.length"
+        [connections]="registeredConnections"
+        (onAssistanceConnection)="assistanceConnection($event)"
+        (onDeclineConnection)="declineConnection($event)"
+        kind="registered">
+      </app-table-connections>
+      <div class="empty" *ngIf="!registeredConnections.length">
+        No hay conexiones agendadas
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <app-header title="Conexiones tomadas"></app-header>
+      <app-table-connections
+        *ngIf="completedConnections.length"
+        [connections]="completedConnections"
+        kind="completed">
+      </app-table-connections>
+      <div class="empty" *ngIf="!completedConnections.length">
+        No hay conexiones completadas
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p-dialog *ngIf="selectedConnection" [header]="selectedConnection.name" [(visible)]="showModalCode" [style]="{width: '50vw'}">
+    <div>
+      <label>Ingresa el código de la reunión para registrar la asistencia.</label>
+    </div>
+    <div class="mt-1 mb-2">
+      <small>
+        <strong>Nota: </strong> Recuerda que debes ingresar el código de 6 dígitos que te dieron en la conexión para reclamar 50 puntos.
+      </small>
+    </div>
+    <input
+      pInputText
+      type="text"
+      [(ngModel)]="code"
+      class="w-full mt-2"
+      placeholder="Ingresa código"
+
+    />
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-check"
+        (click)="sendAssistanceConnection()"
+        label="Enviar"
+        styleClass="p-button-text"
+      >
+      </p-button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog *ngIf="selectedConnection" [header]="selectedConnection.name" [(visible)]="showModalDecline" [style]="{width: '50vw'}">
+  <label>
+    ¿Estás seguro de querer cancelar esta conexión y agendar una nueva?
+  </label>
+  <ng-template pTemplate="footer">
+    <p-button
+      (click)="showModalDecline = false"
+      label="Cancelar"
+      styleClass="p-button-text"
+    >
+    </p-button>
+    <p-button
+      icon="pi pi-check"
+      (click)="removeConnection()"
+      label="Aceptar"
+      styleClass="p-button-text"
+    >
+    </p-button>
+  </ng-template>
+</p-dialog>
+
+<p-toast></p-toast>
+
+<app-footer></app-footer>

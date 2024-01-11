@@ -1,0 +1,20 @@
+<div>
+  <div>
+    <div class="mt-3">
+      A continuación, conoce el estado de madurez de tu emprendimiento o negocio diligenciando el siguiente auto diagnóstico:
+    </div>
+    <h2>Contacto Principal</h2>
+    <div class="card">
+        <app-form
+          [configuration]="configuration"
+          (onSubmit)="validateForm($event)">
+        </app-form>
+    </div>
+  </div>
+</div>
+<app-modal
+  (onClose)="closeModal($event)"
+  [message]="message"
+  [showModal]="showModal"
+  [header]="header"
+></app-modal>

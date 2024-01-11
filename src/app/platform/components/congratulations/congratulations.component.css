@@ -1,0 +1,11 @@
+.container-banner-marketplace {
+  background-color: #009ed6;
+  color: #FFF;
+  padding: 30px;
+  border-radius: .5rem;
+  padding-bottom: 40px;
+}
+
+.img-marketplace {
+  border-radius: .5rem;
+}

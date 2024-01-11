@@ -1,0 +1,50 @@
+#toolbar {
+  border-bottom: 2px solid #e9edf2;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.star-icon {
+  color: #ffc107;
+  font-size: 40px;
+  position: relative;
+}
+
+.star-icon-small {
+  color: #ffc107;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.company-top {
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+label {
+  font-weight: 500;
+}
+
+.star-icon span {
+  color: #FFF;
+  margin-left: -25px;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  margin-top: 8px;
+}
+
+#menuMobile {
+  display: none;
+}
+
+.text-decoration {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+  #menuMobile {
+    display: inline-block;
+  }
+}

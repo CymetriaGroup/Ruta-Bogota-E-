@@ -1,0 +1,81 @@
+<div class="grid" id="toolbar">
+  <div class="md:col-9 col-6">
+    <div class="grid">
+      <div class="md:col-1 col-3 text-center">
+        <i class="pi pi-star star-icon">
+          <span>{{ star }}</span>
+        </i>
+      </div>
+      <div class="md:col-11 col-9">
+        <div class="mt-1">
+          <div>
+            <small>Puntos disponibles para marketplace <strong>{{ points }} puntos</strong></small>
+          </div>
+          <div>
+            <small>Puntos totales <strong>{{ totalPoints }} puntos</strong></small>
+          </div>
+          <div
+            class="pointer"
+            routerLink="/platform/transactions"
+          >
+            <small class="text-decoration">
+              Ver detalle de puntos
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="md:col-3 col-6">
+    <div class="text-right">
+      <button id="menuMobile" class="mr-2" type="button" pButton icon="pi pi-bars" label="" (click)="menu.toggle($event)"></button>
+      <p-button icon="pi pi-user" (click)="op.toggle($event)"></p-button>
+    </div>
+  </div>
+  <p-menu #menu [popup]="true" [model]="items"></p-menu>
+</div>
+
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+    <div class="grid p-3">
+      <div class="md:col-3 col-12">
+        <i class="pi pi-user"></i>
+      </div>
+      <div class="md:col-9 col-12">
+        <div>
+          <strong>{{ user.first_name | titlecase }} {{ user.last_name | titlecase }}</strong>
+        </div>
+        <div>
+          <small>{{ user.position }}</small>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span>Nivel</span>
+      {{ star }}<i class="pi pi-star star-icon-small"></i>{{ points }} puntos
+    </div>
+    <div class="company-top">
+      {{ user.company }}
+    </div>
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Editar perfil"
+      class="p-button-outlined mt-3 w-full"
+      routerLink="./profile"
+    >
+    </button>
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Cerrar sesión"
+      class="p-button-outlined p-button-danger mt-3 w-full"
+      (click)="logout()"
+    >
+    </button>
+  </ng-template>
+</p-overlayPanel>
+
+<p-toast [baseZIndex]="1000"></p-toast>

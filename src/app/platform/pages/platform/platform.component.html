@@ -1,0 +1,21 @@
+<div class="grid">
+  <div class="md:col-2 p-0" id="sidebarContainer">
+    <app-sidebar [user]="user"></app-sidebar>
+  </div>
+  <div class="md:col-10 col-12 p-0">
+    <app-top-bar [user]="user"></app-top-bar>
+
+    <p-blockUI [blocked]="isLoading">
+      <p-progressSpinner></p-progressSpinner>
+    </p-blockUI>
+
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div id="whatsapp">
+    <a href="https://api.whatsapp.com/send?phone=573107699174" target="_blank">
+      <img src="./assets/img/dashboard/whatsapp.png" />
+    </a>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+.card, .card-nav .tab-content {
+  box-shadow: 0 3px 3px -2px rgb(39 44 51 / 10%), 0 3px 4px 0 rgb(39 44 51 / 4%), 0 1px 8px 0 rgb(39 44 51 / 2%);
+}
+
+.card, .card-group, .card-nav .tab-content {
+  margin-bottom: 1.5rem;
+}
+
+.card, .card-nav .tab-content {
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #dfe2e6;
+  border-radius: .5rem;
+}
+
+.card, .card-nav .tab-content {
+  transition: box-shadow .28s cubic-bezier(.4,0,.2,1);
+  will-change: box-shadow;
+}
+
+.card, .card-nav .tab-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+.card-header:first-child {
+  border-radius: .5rem .5rem 0 0;
+}
+
+.card-header {
+  border-bottom: 1px solid #dfe2e6;
+}
+
+.card-header {
+  padding: 1rem;
+  margin-bottom: 0;
+  background-color: #fff;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-family: Exo\ 2,Helvetica Neue,Arial,sans-serif;
+  font-weight: 600;
+  color: #303840;
+  line-height: 1.25;
+}
+
+.event-container {
+  padding: 20px;
+  border-bottom: 1px solid #e9edf2;
+}
+
+.border-bottom-accent {
+  border-bottom: 2px solid #ff187c;
+}

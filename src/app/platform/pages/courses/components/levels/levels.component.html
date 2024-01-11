@@ -1,0 +1,40 @@
+<p-fieldset
+      *ngFor="let level of levels"
+      styleClass="mb-3"
+      [legend]="level.name"
+      [toggleable]="true"
+>
+  <div *ngIf="level.courses">
+    <div *ngFor="let course of level.courses">
+      <div class="mb-3">
+        <div class="grid">
+          <div class="md:col-10 col-12">
+            <div>
+              <strong>
+                {{ course.name }}
+              </strong>
+            </div>
+            <div class="text-justify">
+              {{ course.description }}
+            </div>
+          </div>
+          <div class="md:col-2 col-12">
+            <button
+              pButton
+              pRipple
+              type="button"
+              class="w-full"
+              [label]="isSubscribed(course.id) ? 'Entrar al curso' : 'Inscribirme'"
+              [class]="isSubscribed(course.id) ? 'p-button-info mt-4' : 'p-button-help mt-4'"
+              (click)="handleCourse(course)"
+            >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!level.courses || level.courses.length === 0">
+    <strong>No hay cursos para este nivel</strong>
+  </div>
+</p-fieldset>

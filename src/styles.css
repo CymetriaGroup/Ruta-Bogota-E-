@@ -1,0 +1,178 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  background-color: var(--surface-b);
+  font-family: Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-size: 14px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-family: Exo\ 2,Helvetica Neue,Arial,sans-serif;
+}
+
+.welcome {
+  color: #009ed6;
+}
+
+.p-component {
+  font-family: Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
+}
+
+.p-datatable-thead {
+  font-family: Exo\ 2,Helvetica Neue,Arial,sans-serif;
+}
+
+.inputfield {
+  font-size: 1rem;
+  color: var(--text-color);
+  background: var(--surface-overlay);
+  padding: 0.5rem 0.5rem;
+  border: 1px solid var(--primary-color);
+  appearance: none;
+  border-radius: 3px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+#sidebar {
+  height: 100%;
+  min-height: 100vh;
+  background-color: #009ed6;
+  padding: 30px;
+  color: #333;
+}
+
+#sidebarPlatform {
+  height: 100%;
+  min-height: 100vh;
+  background-color: #2e3183;
+  padding: 20px;
+  color: #333;
+}
+
+.white {
+  color: #FFF;
+}
+
+.circle-skeleton {
+  width: 70px !important;
+  height: 70px !important;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.p-timeline .p-timeline-event-marker {
+  border-color: lightgray !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  text-align: center;
+  display: block !important;
+  cursor: pointer;
+}
+
+.p-timeline-event-marker-active {
+  border: 2px solid #2196F3;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.custom-marker {
+  font-size: 12px;
+}
+
+.ng-submitted .ng-invalid {
+  border: 1px solid red;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+}
+
+#terms h2{
+  text-align: center;
+}
+
+#terms div{
+  text-align: justify;
+}
+
+.p-button.p-button-success {
+  border-color: #ff187c !important;
+  background-color: #ff187c !important;
+}
+
+.p-button.p-button-primary {
+  border-color: #009ed6  !important;
+  background-color: #009ed6  !important;
+}
+
+.p-password input {
+  width: 100%;
+}
+
+app-list .p-card-title {
+  text-align: center;
+}
+
+.p-button-label {
+  font-family: Exo\ 2,Helvetica Neue,Arial,sans-serif !important;
+}
+
+.p-timeline-horizontal .p-timeline-event-separator {
+  padding-left: 36px;
+    margin-right: -36px;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+.empty {
+  padding: 45px;
+  text-align: center;
+  background-color: #FFF;
+  box-shadow: 0 3px 3px -2px rgb(39 44 51 / 10%), 0 3px 4px 0 rgb(39 44 51 / 4%), 0 1px 8px 0 rgb(39 44 51 / 2%);
+  background-clip: border-box;
+  border: 1px solid #dfe2e6;
+  border-radius: .5rem;
+  min-height: 108px;
+}
+
+.p-blockui-document.p-component-overlay {
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.text-white-50 {
+  color: rgba(39,44,51,.5);
+}
+
+.link-button {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.list-scroll {
+  max-height: 300px;
+  overflow: auto;
+  padding-right: 15px;
+}

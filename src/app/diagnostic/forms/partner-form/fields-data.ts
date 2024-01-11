@@ -1,0 +1,83 @@
+export const mockDataPartner1 = {
+  document_type_1: 'CC',
+  document_1: 1030557400,
+  first_name_1: 'Sebastian',
+  last_name_1: 'Rincon',
+  genre_1: 'M',
+  birthday_1: null,
+  position_1: 'Developer',
+  department_1: 'Cundinamarca',
+  city_1: 'Bogotá',
+  address_1: 'Calle 8A 79-17',
+  neighborhood_1: 'Castilla',
+  location_1: '1',
+  stratum_1: '3',
+  phone_1: '4500903',
+  mobile_1: '3194562251',
+  email_1: 'elrincondesebastian@hotmail.com',
+  education_1: '2',
+  disability_1: false
+};
+
+export const mockDataPartner2 = {
+  document_type_2: 'CC',
+  document_2: 1030557400,
+  first_name_2: 'Sebastian',
+  last_name_2: 'Rincon',
+  genre_2: 'M',
+  birthday_2: null,
+  position_2: 'Developer',
+  department_2: 'Cundinamarca',
+  city_2: 'Bogotá',
+  address_2: 'Calle 8A 79-17',
+  neighborhood_2: 'Castilla',
+  location_2: '1',
+  stratum_2: '3',
+  phone_2: '4500903',
+  mobile_2: '3194562251',
+  email_2: 'elrincondesebastian@hotmail.com',
+  education_2: '2',
+  disability_2: false
+};
+
+export const initialDataPartner1 = {
+  document_type_1: null,
+  document_1: null,
+  first_name_1: null,
+  last_name_1: null,
+  genre_1: null,
+  birthday_1: null,
+  position_1: null,
+  department_1: null,
+  city_1: null,
+  address_1: null,
+  neighborhood_1: null,
+  location_1: null,
+  stratum_1: null,
+  phone_1: null,
+  mobile_1: null,
+  email_1: null,
+  education_1: null,
+  disability_1: null
+};
+
+export const initialDataPartner2 = {
+  document_type_2: null,
+  document_2: null,
+  first_name_2: null,
+  last_name_2: null,
+  genre_2: null,
+  birthday_2: null,
+  position_2: null,
+  department_2: null,
+  city_2: null,
+  address_2: null,
+  neighborhood_2: null,
+  location_2: null,
+  stratum_2: null,
+  phone_2: null,
+  mobile_2: null,
+  email_2: null,
+  education_2: null,
+  disability_2: null
+};

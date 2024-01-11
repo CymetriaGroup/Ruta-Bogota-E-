@@ -1,0 +1,62 @@
+<div class="p-3">
+  <h1 class="welcome">¡Bienvenido!</h1>
+  <span>Inicia sesión en tu cuenta</span>
+
+  <form (ngSubmit)="doLogin(fLogin)" #fLogin="ngForm">
+    <div class="mt-4">
+      <div class="mb-2">
+        <label>Correo Electrónico</label>
+      </div>
+      <span class="p-input-icon-right w-full">
+          <input
+            type="text"
+            class="w-full"
+            pInputText
+            name="username"
+            [(ngModel)]="login.username"
+            [email]="true"
+            required
+          />
+          <i class="pi pi-envelope"></i>
+      </span>
+    </div>
+    <div>
+      <small *ngIf="fLogin.submitted && !login.username" class="p-error">El correo electrónico es requerido.</small>
+    </div>
+
+    <div class="mt-4">
+      <div class="mb-2">
+        <label>Contraseña</label>
+      </div>
+      <p-password
+        [(ngModel)]="login.password"
+        name="password"
+        [toggleMask]="true"
+        [feedback]="false"
+        styleClass="w-full"
+        required
+      ></p-password>
+    </div>
+    <div>
+      <small *ngIf="fLogin.submitted && !login.username" class="p-error">La contraseña es requerida.</small>
+    </div>
+
+    <div class="p-field-checkbox mt-3">
+        <p-checkbox inputId="binary"></p-checkbox>
+        <label class="ml-2" for="binary">Recuérdame</label>
+    </div>
+
+    <div class="mt-5 text-center">
+      <button
+        pButton
+        pRipple
+        type="submit"
+        label="INICIAR SESIÓN"
+        class="p-button-raised p-button-success"
+        [disabled]="!fLogin.valid || loading"
+      >
+      </button>
+    </div>
+  </form>
+
+</div>

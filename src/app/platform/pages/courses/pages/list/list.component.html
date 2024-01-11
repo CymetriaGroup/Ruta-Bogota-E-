@@ -1,0 +1,42 @@
+<div class="container">
+  <ng-template pTemplate="header">
+    <div class="text-right p-3">
+      <p-button
+        label="Volver"
+        icon="pi pi-chevron-left"
+        routerLink="/platform/courses"
+      >
+      </p-button>
+    </div>
+  </ng-template>
+  <div *ngIf="loading" class="text-center">
+    <strong>Cargando...</strong>
+  </div>
+  <div *ngIf="!levels.length && !loading" class="text-center">
+    <strong>
+      No hay niveles creados
+    </strong>
+  </div>
+  <div *ngIf="levels.length">
+
+    <div class="grid mb-3">
+      <div class="md:col-9 col-12">
+        <h1 class="welcome mt-0 mb-0">{{ levels[0].category.name }}</h1>
+      </div>
+      <div class="md:col-3 col-12 text-right">
+        <button
+          pButton
+          pRipple
+          type="button"
+          routerLink="/platform/courses"
+          label="VOLVER"
+          icon="pi pi-chevron-left"
+          class="p-button-outlined p-button-secondary">
+        </button>
+      </div>
+    </div>
+    <app-levels [levels]="levels" (onEnterCourse)="enterCourse($event)"></app-levels>
+  </div>
+</div>
+
+<app-footer></app-footer>

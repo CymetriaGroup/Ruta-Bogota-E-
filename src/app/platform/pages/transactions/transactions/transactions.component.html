@@ -1,0 +1,80 @@
+<div class="container">
+
+  <div class="mt-5">
+    <app-header title="Mis puntos"></app-header>
+
+    <div class="table-container" *ngIf="transactions.length">
+      <p-table [value]="transactions">
+        <ng-template pTemplate="header">
+          <tr>
+              <th pSortableColumn="created_at">FECHA DE CREACIÓN<p-sortIcon field="created_at"></p-sortIcon></th>
+              <th pSortableColumn="end_date">PUNTOS<p-sortIcon field="points"></p-sortIcon></th>
+              <th pSortableColumn="description">DESCRIPCIÓN <p-sortIcon field="description"></p-sortIcon></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-transaction>
+          <tr>
+              <td>
+                {{ transaction.created_at | date:'dd/M/yyyy h:mm a' }}<br />
+              </td>
+              <td [class]="transaction.points > 0 ? 'text-normal':'text-danger'">
+                {{ transaction.points }}<br />
+              </td>
+              <td>
+                {{ transaction.description }}<br />
+              </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+      <div class="grid p-3">
+        <div class="md:col-6 col-6">
+          <div>
+            <strong>
+              SALDO DE PUNTOS PARA MARKET PLACE
+            </strong>
+          </div>
+          <div>
+            <small>
+              (estos son los puntos que tienes disponibles para redimir en el market place)
+            </small>
+          </div>
+        </div>
+        <div class="md:col-6 col-6 text-right">
+          <strong>
+            {{ totalPoints }} puntos
+          </strong>
+        </div>
+      </div>
+
+      <div class="grid p-3" *ngIf="showStar > 0">
+        <div class="md:col-6 col-6">
+          <div>
+            <strong>
+              PUNTOS ACUMULADOS EN EL PROGRAMA
+            </strong>
+          </div>
+          <div>
+            <small>
+              (estos son los puntos que has acumulado durante todo el programa y te dan acceso a las diferentes estaciones)
+            </small>
+          </div>
+        </div>
+        <div class="md:col-6 col-6 text-right">
+          <strong>
+            {{ totalPointsStar }} puntos
+            <i class="pi pi-star star-icon">
+              <span>{{ star }}</span>
+            </i>
+          </strong>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="empty" *ngIf="!transactions.length">
+      No hay transacciones disponibles
+    </div>
+  </div>
+
+</div>

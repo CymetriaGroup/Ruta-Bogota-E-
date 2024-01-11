@@ -1,0 +1,217 @@
+<div *ngIf="course">
+
+  <div class="grid">
+    <div class="md:col-2 col-12">
+      <p-button
+        *ngIf="course.routing?.prev_item"
+        icon="pi pi-chevron-left"
+        class="p-button-outlined p-button-secondary ml-3"
+        routerLink="/platform/courses/{{ course.routing?.prev_item?.slug }}/{{ course.routing?.prev_item?.id }}"
+        label="Curso anterior"
+      >
+      </p-button>
+    </div>
+    <div class="md:col-8 col-12">
+      <div class="grid">
+        <div class="md:col-1 col-1 text-center">
+        </div>
+        <div class="md:col-1 col-2">
+          <img class="img-fluid" [src]="course.image | image" />
+        </div>
+        <div class="md:col-6 col-9">
+          <div>
+            <h3 class="m-0">{{ course.name }}</h3>
+          </div>
+          <div>
+            <small>{{ course.teacher?.name || '' }}</small>
+          </div>
+        </div>
+        <div class="md:col-4 col-12 text-center pointer">
+          <div *ngIf="course.doc_1 || course.doc_2" class="mt-2">
+            <button
+              pButton
+              pRipple
+              type="button"
+              label="Descargar material de apoyo"
+              (click)="openDocuments()"
+              class="p-button-outlined p-button-secondary">
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="md:col-2 col-12 text-right">
+      <p-button
+        *ngIf="course.routing?.next_item"
+        iconPos="right"
+        icon="pi pi-chevron-right"
+        class="p-button-outlined p-button-secondary mr-3"
+        routerLink="/platform/courses/{{ course.routing?.next_item?.slug }}/{{ course.routing?.next_item?.id }}"
+        label="Curso siguiente"
+      >
+      </p-button>
+    </div>
+  </div>
+
+  <div id="courseContainer">
+    <div class="grid">
+      <div class="md:col-2 col-12"></div>
+      <div class="md:col-8 col-12">
+        <div *ngIf="isSubscribed(course.id)">
+          <iframe
+            width="100%"
+            height="400"
+            [src]="sanitizeVideo(course.video!)"
+            [title]="course.name"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="grid">
+          <div class="md:col-9">
+            <div class="p-3">
+              <h1 class="text-white">{{ course.name }}</h1>
+            </div>
+          </div>
+          <div class="md:col-3 text-right">
+            <h1 class="text-white-50 p-3" *ngIf="course.likes">
+              <i class="fa fa-user"></i>
+              {{ course.likes }}
+            </h1>
+          </div>
+        </div>
+
+        <div class="text-white text-justify p-3">
+          {{ course.description }}
+        </div>
+
+        <div *ngIf="course.times >= 5 && !course.approved" class="text-center text-white">
+          <h2>
+            Lo sentimos, no has aprobado este curso y has gastado todas las oportunidades.
+          </h2>
+        </div>
+
+        <div *ngIf="course.times <= 5 && course.approved" class="text-center text-white">
+          <h2>
+            Felicitaciones, has completado este curso exitosamente!
+          </h2>
+        </div>
+
+        <div class="ml-3">
+          <button
+            *ngIf="!isSubscribed(course.id)"
+            pButton
+            pRipple
+            type="button"
+            class="w-full"
+            label="Inscribirme"
+            class="p-button-help mt-4"
+            (click)="handleCourse(course)"
+          >
+          </button>
+        </div>
+
+        <div class="ml-3" *ngIf="isSubscribed(course.id) && course.times < 5 && !course.approved && course.questions.length">
+          <div class="mt-4 mb-2 text-white" style="margin-bottom: -10px;">
+            <strong>Nota:</strong> Para sumar los puntos debes presenter la siguiente evaluación y responder correctamente todas las preguntas.
+          </div>
+          <div>
+            <button
+              pButton
+              pRipple
+              type="button"
+              [label]="getTimes()"
+              (click)="makeTest()"
+              class="p-button-outlined p-button-secondary mt-3">
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-3" *ngIf="showEvaluation && course.questions.length">
+          <form (ngSubmit)="sendAnswers()" #fCourse="ngForm">
+            <p-fieldset
+                  *ngFor="let question of course.questions"
+                  styleClass="mb-3"
+                  [legend]="question.data.name"
+            >
+              <p-dropdown
+                styleClass="w-full"
+                [name]="question.data.id.toString()"
+                [(ngModel)]="question.data.answer"
+                [options]="question.answers"
+                placeholder="Seleccione..."
+                optionLabel="name"
+                optionValue="id"
+                [required]="true"
+              >
+              </p-dropdown>
+              <div *ngIf="finishTest">
+                <div [class]="question.correct ? 'correct-answer' : 'incorrect-answer' ">{{ question.correct ? 'Respuesta correcta - ' + question.answer_name: 'Respuesta incorrecta' }}</div>
+              </div>
+            </p-fieldset>
+            <div class="text-right">
+              <button
+                pButton
+                pRipple
+                [disabled]="fCourse.invalid || fCourse.submitted"
+                type="submit"
+                label="Enviar respuestas"
+                class="p-button-raised p-button-help">
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+      <div class="md:col-2 col-12"></div>
+    </div>
+  </div>
+
+  <app-forum
+    *ngIf="isSubscribed(course.id)"
+    [course]="course.id"
+  >
+  </app-forum>
+
+  <div class="grid mt-3">
+    <div class="md:col-2 col-12"></div>
+    <div class="md:col-8 col-12">
+      <div class="grid">
+        <div class="md:col-1 col-2">
+          <img class="img-fluid" [src]="course.teacher.image | image" />
+        </div>
+        <div class="md:col-9 col-10">
+          <div>
+            <h2 class="m-0">{{ course.teacher?.name || '' }}</h2>
+          </div>
+        </div>
+        <div class="md:col-2 col-2 text-right mt-3 text-muted">
+          <div *ngIf="course.duration">
+            <i class="pi pi-clock"></i> {{ course.duration | time }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="md:col-2 col-12"></div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
+
+<p-dialog
+  [header]="header"
+  [(visible)]="showModal"
+  [style]="{width: '50vw'}"
+>
+  <div [innerHTML]="message"></div>
+  <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-check"
+        (click)="closeModal()"
+        label="Cerrar"
+        styleClass="p-button-text"
+      ></p-button>
+  </ng-template>
+</p-dialog>

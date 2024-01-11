@@ -1,0 +1,26 @@
+#backgroundLogin {
+  background-image: url('../../../../assets/img/login/background.jpg');
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+}
+
+label {
+  font-weight: 500;
+}
+
+.forgot-link {
+  color: rgba(39,44,51,.7);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.register-link {
+  color: #272c33;
+}
+
+@media only screen and (max-width: 600px) {
+  #backgroundLogin {
+    display: none;
+  }
+}

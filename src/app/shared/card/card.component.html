@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="grid">
+    <div class="md:col-2 col-2">
+      <img class="img-fluid" src="{{ config.image | image }}" />
+    </div>
+    <div [class]="config.url ? 'md:col-6 col-12' : 'md:col-10 col-12'">
+      <div [class]="config.description ? 'card-title' : 'card-title mt-2'">
+        {{ config.title }}
+      </div>
+      <div>
+        <div>
+          <small>
+            <strong>
+              {{ config.subtitle }}
+            </strong>
+          </small>
+        </div>
+        <div>
+          <small>{{ config.description }}</small>
+        </div>
+      </div>
+    </div>
+    <div [class]="config.url ? 'md:col-4 col-12 text-center' : 'md:col text-center'">
+      <button
+        *ngIf="config.url"
+        [routerLink]="config.url"
+        pButton
+        pRipple
+        type="button"
+        label="INGRESAR"
+        class="p-button-outlined p-button-secondary mt-2">
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="mb-4 text-right">
+  <button
+    *ngIf="configuration.prev"
+    (click)="setActive(configuration.prev)"
+    type="button"
+    pButton
+    label="Anterior"
+    icon="pi pi-angle-left" iconPos="left"
+    class="p-button-primary mr-2">
+  </button>
+  <button
+    type="submit"
+    pButton
+    [disabled]="disabled"
+    [icon]="configuration.next ? 'pi pi-angle-right' : 'pi pi-check'" iconPos="right"
+    [label]="configuration.next ? 'Siguiente' : 'Finalizar'"
+    class="p-button-success">
+  </button>
+</div>

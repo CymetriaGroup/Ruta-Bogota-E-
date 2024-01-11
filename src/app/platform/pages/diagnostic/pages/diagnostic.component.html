@@ -1,0 +1,48 @@
+<div class="container">
+
+  <app-header title="Auto-diagnóstico*"></app-header>
+  <div class="mb-3">
+    <small class="f-13">
+      <i class="fas fa-exclamation-triangle mr-1 yellow"></i>
+      <strong>NOTA IMPORTANTE:</strong> Una vez realices el auto-diagnóstico podrás seguir a la próxima estación:
+      <strong>Colaboratorios</strong>
+    </small>
+  </div>
+  {{areas.length}}
+  <div *ngIf="!areas.length">
+    <p-skeleton styleClass="mt-2"></p-skeleton>
+    <p-skeleton styleClass="mt-2"></p-skeleton>
+    <p-skeleton styleClass="mt-2"></p-skeleton>
+  </div>
+
+  <div *ngIf="areas.length">
+    <p-timeline [value]="menu" layout="horizontal">
+      <ng-template pTemplate="marker" let-item>
+        <span class="custom-marker p-shadow-2">
+          <div [ngClass]="active === item.form ? 'p-timeline-event-marker-active' : 'p-timeline-event-marker'" class=""
+            (click)="setActive(item.form)">
+            {{ item.id }}
+          </div>
+        </span>
+      </ng-template>
+    </p-timeline>
+  </div>
+
+  <div *ngIf="areas.length">
+    <app-personal-form [ngClass]="active !== 'personal' ? 'hidden' : ''">
+    </app-personal-form>
+
+    <app-partner-form [ngClass]="active !== 'partner' ? 'hidden' : ''">
+    </app-partner-form>
+
+    <app-company-form [ngClass]="active !== 'company' ? 'hidden' : ''">
+    </app-company-form>
+
+    <div>
+      <app-custom-form *ngFor="let area of areas" [title]="area.area.name" [areas]="areas" [disabled]="disabled"
+        [ngClass]="active !== area.area.slug ? 'hidden' : ''"></app-custom-form>
+    </div>
+  </div>
+
+</div>
+<p-toast></p-toast>

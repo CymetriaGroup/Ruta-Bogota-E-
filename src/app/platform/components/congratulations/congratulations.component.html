@@ -1,0 +1,50 @@
+<div class="carousel">
+  <p-carousel [value]="marketplace" [numVisible]="1" [numScroll]="1">
+    <ng-template let-item pTemplate="item">
+      <div class="container-banner-marketplace">
+        <div class="grid">
+          <div class="md:col-8">
+            <h3 class="mb-1 text-center">
+              {{ item.name | uppercase }}
+            </h3>
+          </div>
+          <div class="md:col-4">
+            <img class="img-fluid img-marketplace" [src]="item.image | image" />
+          </div>
+        </div>
+
+        <div class="grid mt-4">
+          <div class="md:col-1"></div>
+          <div class="md:col-3">
+            <img class="img-fluid" src="./assets/img/dashboard/cup.png" />
+          </div>
+          <div class="md:col-8">
+            <div>
+              <small>
+                Podrás redimir este beneficio con:
+              </small>
+            </div>
+            <div>
+                {{ item.points }} puntos
+            </div>
+            <div class="mt-2">
+              <button
+                routerLink="/platform/marketplace"
+                pButton
+                pRipple
+                type="button"
+                label="IR A MARKETPLACE"
+                class="p-button-raised p-button-success"
+              >
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>
+
+<div class="empty" *ngIf="!marketplace.length">
+  No has completado ningún curso
+</div>

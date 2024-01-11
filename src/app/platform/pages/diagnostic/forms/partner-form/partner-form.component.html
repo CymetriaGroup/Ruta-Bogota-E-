@@ -1,0 +1,76 @@
+<app-head [title]="title" [subtitle]="subtitle"></app-head>
+
+<form #form="ngForm">
+
+  <div class="grid">
+    <label [for]="partnerNumber" class="col-12 mb-2 md:col-4 md:mb-0">
+      <strong>
+        Socios <span>*</span>
+      </strong>
+    </label>
+    <div class="col-12 md:col-8">
+        <p-dropdown
+          name="partnerNumber"
+          [(ngModel)]="partnerNumber"
+          styleClass="w-full"
+          [options]="values"
+          placeholder="Seleccione..."
+          optionLabel="name"
+          optionValue="value"
+          [required]="true"
+        >
+        </p-dropdown>
+    </div>
+  </div>
+
+  <div *ngIf="partnerNumber == 1">
+    <h2 class="text-center">Socio 1</h2>
+    <app-fields
+      class="mb-4 mt-4"
+      ngModelGroup="fields"
+      [configuration]="configurationPartner1">
+    </app-fields>
+  </div>
+
+  <div *ngIf="partnerNumber == 2">
+    <h2 class="text-center">Socio 1</h2>
+    <app-fields
+      class="mb-4 mt-4"
+      ngModelGroup="fields"
+      [configuration]="configurationPartner1">
+    </app-fields>
+    <h2 class="text-center">Socio 2</h2>
+    <app-fields
+      class="mb-4 mt-4"
+      ngModelGroup="fields"
+      [configuration]="configurationPartner2">
+    </app-fields>
+  </div>
+
+  <div class="text-right mt-4 mb-4">
+    <button
+      (click)="setActive()"
+      type="button"
+      pButton
+      label="Anterior"
+      icon="pi pi-angle-left" iconPos="left"
+      class="p-button-primary mr-2">
+    </button>
+    <button
+      (click)="validateForm(form)"
+      type="button"
+      pButton
+      icon="pi pi-angle-right"
+      label="Siguiente"
+      class="p-button-success">
+    </button>
+  </div>
+
+</form>
+
+<app-modal
+  (onClose)="closeModal($event)"
+  [message]="message"
+  [showModal]="showModal"
+  [header]="header"
+></app-modal>

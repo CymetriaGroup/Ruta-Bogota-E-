@@ -1,0 +1,36 @@
+#courseContainer {
+  background-color: #009ed6;
+  padding: 30px 0px;
+}
+
+.text-white {
+  color: #FFF;
+}
+
+.text-white-50 {
+  color: hsla(0,0%,100%,.5)!important;
+}
+
+.p-button-secondary {
+  background-color: #FFF !important;
+}
+
+.text-muted {
+  color: rgba(39,44,51,.5)!important;
+}
+
+img {
+  border-radius: .5rem;
+}
+
+.correct-answer {
+  color: green;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.incorrect-answer {
+  color: red;
+  font-weight: bold;
+  margin-top: 5px;
+}

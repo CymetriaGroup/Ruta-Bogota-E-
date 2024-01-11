@@ -1,0 +1,33 @@
+.menu-item {
+  color: rgba(172,182,191,.5);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu-item:hover {
+  color: #FFF;
+}
+
+.menu-active-item {
+  color: #FFF;
+}
+
+#nameContainer {
+  color: #FFF;
+}
+
+#nameContainer .name{
+  font-size: 22px;
+  font-weight: bold;
+  color: #009ed6;
+}
+
+#nameContainer .company {
+  color: #8a9199;
+  font-family: Exo\ 2,Helvetica Neue,Arial,sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  line-height: 1.5rem;
+  font-size: .875rem;
+}

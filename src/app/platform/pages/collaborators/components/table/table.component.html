@@ -1,0 +1,133 @@
+<div class="table-container">
+  <p-table [value]="collaboratives">
+    <ng-template pTemplate="header">
+      <tr>
+          <th pSortableColumn="start_date">FECHA INICIO<p-sortIcon field="start_date"></p-sortIcon></th>
+          <th pSortableColumn="end_date">FECHA CIERRE<p-sortIcon field="end_date"></p-sortIcon></th>
+          <th pSortableColumn="name">TEMA / EXPERTO <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="location">UBICACIÓN <p-sortIcon field="location"></p-sortIcon></th>
+          <th pSortableColumn="assistance_collaborative" *ngIf="kind === 'collaboratives'">CUPOS DISPONIBLES <p-sortIcon field="assistance_collaborative"></p-sortIcon></th>
+          <th pSortableColumn="assistance_date" *ngIf="kind === 'completed'">TOMADO EL <p-sortIcon field="assistance_date"></p-sortIcon></th>
+          <th pSortableColumn="points" *ngIf="kind === 'completed'">PUNTOS <p-sortIcon field="points"></p-sortIcon></th>
+          <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-collaborative>
+      <tr>
+          <td>
+            {{ collaborative.start_date | date:'dd/M/yyyy' }}<br />
+            <small class="text-white-50">
+              {{ collaborative.start_date | date:'h:mm a' }}
+            </small>
+          </td>
+          <td>
+            {{ collaborative.end_date | date:'dd/M/yyyy' }}<br />
+            <small class="text-white-50">
+              {{ collaborative.end_date | date:'h:mm a' }}
+            </small>
+          </td>
+          <td>
+            {{collaborative.name}}<br />
+            <small class="text-white-50">
+              {{ collaborative.teacher.name }}
+            </small>
+          </td>
+          <td>
+            <small class="text-white-50">
+              {{ collaborative.location == '1' ? 'Virtual' : 'Presencial' }}
+            </small><br />
+            <small *ngIf="kind === 'collaboratives' && collaborative.location == '2'">{{ collaborative.meet }}</small>
+            <small *ngIf="kind === 'registered'" [innerHTML]="getMeet(collaborative)"></small>
+          </td>
+          <td *ngIf="kind === 'collaboratives'">
+            <div *ngIf="collaborative.quota - collaborative.assistance_collaborative.length > 0">
+              {{ collaborative.quota - collaborative.assistance_collaborative.length }}/{{ collaborative.quota }}<br />
+              <small class="text-white-50">
+                Cupos disponibles
+              </small>
+            </div>
+            <div *ngIf="collaborative.quota - collaborative.assistance_collaborative.length <= 0">
+              <strong>
+                No hay cupos disponibles
+              </strong>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="kind === 'collaboratives'">
+              <button
+                *ngIf="canSignUp(collaborative)"
+                pButton
+                pRipple
+                type="button"
+                (click)="signUpCollaborative(collaborative.id)"
+                label="Agendar"
+                class="p-button-raised p-button-success"
+              >
+              </button>
+              <small *ngIf="!canSignUp(collaborative)">---</small>
+            </div>
+
+            <div *ngIf="kind === 'registered'" class="text-right">
+              <button
+                *ngIf="isTime(collaborative)"
+                pButton
+                pRipple
+                type="button"
+                label="Ingresar código de asistencia"
+                class="p-button-raised p-button-success"
+                (click)="assistanceCollaborative(collaborative)"
+              >
+              </button>
+              <div class="text-center mt-2">
+                <small
+                  *ngIf="isTime(collaborative)"
+                  style="text-decoration: underline; cursor: pointer;"
+                  (click)="declineCollaborative(collaborative)"
+                >
+                  No pude asistir, necesito reagendar
+                </small>
+              </div>
+              <div>
+                <small *ngIf="!isTime(collaborative)">
+                  {{ messageError }}
+                </small>
+              </div>
+              <div
+                class="mt-2"
+                *ngIf="!isTime(collaborative) && messageError !== 'El colaboratorio ya ha sido tomado'"
+              >
+                <small
+                  style="text-decoration: underline; cursor: pointer;"
+                  (click)="declineCollaborative(collaborative)"
+                >
+                  No puedo asistir, necesito reagendar
+                </small>
+              </div>
+            </div>
+
+            <div *ngIf="kind === 'completed'">
+              {{ getCompleted(collaborative) | date:'dd/M/yyyy' }}<br />
+              <small class="text-white-50">
+                {{ getCompleted(collaborative) | date:'h:mm a' }}
+              </small>
+            </div>
+
+          </td>
+          <td *ngIf="kind === 'completed'">
+            {{ collaborative.points }}
+          </td>
+          <td *ngIf="kind === 'completed' && collaborative.location == '1'">
+            <a
+              *ngIf="collaborative.youtube_url"
+              pButton class="p-button-raised p-button-success link-button"
+              href="{{ collaborative.youtube_url }}"
+              target="_blank"
+            >
+              Ver vídeo
+            </a>
+            <span *ngIf="!collaborative.youtube_url">Aún no se ha cargado el vídeo</span>
+          </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

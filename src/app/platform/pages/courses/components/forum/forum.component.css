@@ -1,0 +1,11 @@
+.avatar-container {
+  background-color: #eeeeee;
+  border-radius: 5px;
+  padding: 10px 0px;
+}
+
+.comment-button {
+  color: #009ed6;
+  cursor: pointer;
+  text-decoration: underline;
+}

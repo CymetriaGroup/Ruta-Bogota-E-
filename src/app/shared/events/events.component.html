@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header">
+      <div class="d-flex align-items-center">
+          <div class="flex">
+              <strong class="card-title">{{ title }}</strong>
+          </div>
+      </div>
+  </div>
+  <div>
+    <div class="grid event-container" *ngFor="let collaborative of collaboratives">
+      <div class="md:col-1 col-3">
+        <div class="text-center">
+          {{ collaborative.start_date | date:'MMM' }}
+        </div>
+        <div class="border-bottom-accent mt-1 text-white-50 text-center">
+          {{ collaborative.start_date | date:'d' }}
+        </div>
+      </div>
+      <div class="md:col-8 col-9">
+        <div>{{ collaborative.name }}</div>
+        <div class="mt-1 text-white-50">
+          <small>
+            {{ collaborative.start_date | date }} - {{ collaborative.end_date | date }}
+          </small>
+        </div>
+      </div>
+      <div class="md:col-3 col-12" *ngIf="collaborative.youtube_url">
+        <a
+          pButton class="p-button-raised p-button-success link-button"
+          href="{{ collaborative.youtube_url }}"
+          target="_blank"
+        >
+          Ver vídeo
+        </a>
+      </div>
+    </div>
+    <div *ngIf="!collaboratives.length" class="text-center p-4">
+      No hay eventos registrados
+    </div>
+  </div>
+</div>

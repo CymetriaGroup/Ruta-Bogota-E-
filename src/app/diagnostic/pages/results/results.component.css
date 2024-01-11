@@ -1,0 +1,13 @@
+
+@media only screen and (max-width: 600px) {
+  #url {
+    display: none;
+  }
+  #urlMobile {
+    display: block !important;
+  }
+}
+
+#urlMobile {
+  display: none;
+}

@@ -1,0 +1,44 @@
+<div class="grid">
+  <div class="col-12 md:col-2"></div>
+  <div class="col-12 md:col-8">
+
+    <div class="text-center">
+      <img
+        class="img-fluid"
+        width="200px"
+        src="./assets/img/logoRuta.png"
+        routerLink="/"
+      />
+    </div>
+
+    <div *ngIf="completed">
+      <div class="text-center">
+        <div>
+          <img
+            class="img-fluid"
+            src="./assets/img/dashboard/banner1.png"
+          />
+        </div>
+        <div>
+          <h1>Pre-registro exitoso</h1>
+          <h3>A tu correo hemos enviado el usuario y contrasena que puedes usar para el acceso a la plataforma. Son los mismos que usaste en el pre-registro.</h3>
+          <a
+            href="https://plataforma.rutabogotae.co/"
+            pButton
+            label="Ingresar a la plataforma"
+            class="p-button p-button-success">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!completed">
+      <app-personal-form [disabled]="disabled">
+      </app-personal-form>
+    </div>
+
+  </div>
+  <div class="col-12 md:col-2"></div>
+</div>
+
+<p-toast></p-toast>

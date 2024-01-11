@@ -1,0 +1,126 @@
+<div class="table-container">
+  <p-table [value]="connections">
+    <ng-template pTemplate="header">
+      <tr>
+          <th pSortableColumn="start_date">FECHA INICIO<p-sortIcon field="start_date"></p-sortIcon></th>
+          <th pSortableColumn="end_date">FECHA CIERRE<p-sortIcon field="end_date"></p-sortIcon></th>
+          <th pSortableColumn="name">TEMA <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="connection_type">TIPO <p-sortIcon field="connection_type"></p-sortIcon></th>
+          <th pSortableColumn="location">UBICACIÓN <p-sortIcon field="location"></p-sortIcon></th>
+          <th pSortableColumn="assistance_connection" *ngIf="kind === 'connections'">CUPOS DISPONIBLES <p-sortIcon field="assistance_connection"></p-sortIcon></th>
+          <th pSortableColumn="assistance_date" *ngIf="kind === 'completed'">TOMADO EL <p-sortIcon field="assistance_date"></p-sortIcon></th>
+          <th pSortableColumn="points" *ngIf="kind === 'completed'">PUNTOS <p-sortIcon field="points"></p-sortIcon></th>
+          <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-connection>
+      <tr>
+          <td>
+            {{ connection.start_date | date:'dd/M/yyyy' }}<br />
+            <small class="text-white-50">
+              {{ connection.start_date | date:'h:mm a' }}
+            </small>
+          </td>
+          <td>
+            {{ connection.end_date | date:'dd/M/yyyy' }}<br />
+            <small class="text-white-50">
+              {{ connection.end_date | date:'h:mm a' }}
+            </small>
+          </td>
+          <td>
+            {{connection.name}}<br />
+          </td>
+          <td>
+            <small>
+              {{connection.connection_type}}
+            </small>
+          </td>
+          <td>
+            <small class="text-white-50">
+              {{ connection.location == '1' ? 'Virtual' : 'Presencial' }}
+            </small><br />
+            <small *ngIf="kind === 'connections' && connection.location == '2'">{{ connection.meet }}</small>
+            <small *ngIf="kind === 'registered'" [innerHTML]="getMeet(connection)"></small>
+          </td>
+          <td *ngIf="kind === 'connections'">
+            <div *ngIf="connection.quota - connection.assistance_connection.length > 0">
+              {{ connection.quota - connection.assistance_connection.length }}/{{ connection.quota }}<br />
+              <small class="text-white-50">
+                Cupos disponibles
+              </small>
+            </div>
+            <div *ngIf="connection.quota - connection.assistance_connection.length <= 0">
+              <strong>
+                No hay cupos disponibles
+              </strong>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="kind === 'connections'">
+              <button
+                *ngIf="canSignUp(connection)"
+                pButton
+                pRipple
+                type="button"
+                (click)="signUpConnection(connection.id)"
+                label="Agendar"
+                class="p-button-raised p-button-success"
+              >
+              </button>
+              <small *ngIf="!canSignUp(connection)">---</small>
+            </div>
+
+            <div *ngIf="kind === 'registered'" class="text-right">
+              <div class="text-center mt-2">
+                <small
+                  *ngIf="isTime(connection)"
+                  style="text-decoration: underline; cursor: pointer;"
+                  (click)="declineConnection(connection)"
+                >
+                  No pude asistir, necesito reagendar
+                </small>
+              </div>
+              <div>
+                <small *ngIf="!isTime(connection)">
+                  {{ messageError }}
+                </small>
+              </div>
+              <div
+                class="mt-2"
+                *ngIf="!isTime(connection) && messageError !== 'La conexión ya ha sido tomada'"
+              >
+                <small
+                  style="text-decoration: underline; cursor: pointer;"
+                  (click)="declineConnection(connection)"
+                >
+                  No puedo asistir, necesito reagendar
+                </small>
+              </div>
+            </div>
+
+            <div *ngIf="kind === 'completed'">
+              {{ getCompleted(connection) | date:'dd/M/yyyy' }}<br />
+              <small class="text-white-50">
+                {{ getCompleted(connection) | date:'h:mm a' }}
+              </small>
+            </div>
+
+          </td>
+          <td *ngIf="kind === 'completed'">
+            {{ connection.points }}
+          </td>
+          <td *ngIf="kind === 'completed' && connection.location == '1'">
+            <a
+              *ngIf="connection.youtube_url"
+              pButton class="p-button-raised p-button-success link-button"
+              href="{{ connection.youtube_url }}"
+              target="_blank"
+            >
+              Ver vídeo
+            </a>
+            <span *ngIf="!connection.youtube_url">Aún no se ha cargado el vídeo</span>
+          </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

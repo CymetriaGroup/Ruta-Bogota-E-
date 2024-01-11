@@ -1,0 +1,117 @@
+<div *ngFor="let field of configuration.fields">
+  <div class="field grid" *ngIf="!field.dependField || (field.dependField && field.dependValue && configuration.model[field.dependField] && configuration.model[field.dependField] == field.dependValue)">
+    <label [for]="field.name" class="col-12 mb-4 md:col-4 md:mb-0">
+      <strong>
+        {{ field.label }} <span *ngIf="field.isRequired">*</span>
+      </strong>
+    </label>
+    <div class="col-12 md:col-8">
+        <input
+          *ngIf="field.type === 'input-text'"
+          [(ngModel)]="configuration.model[field.name]"
+          [name]="field.name"
+          pInputText
+          [id]="field.name"
+          class="w-full"
+          type="text"
+          [required]="field.isRequired"
+        />
+
+        <p-password
+          *ngIf="field.type === 'input-password'"
+          [(ngModel)]="configuration.model[field.name]"
+          [name]="field.name"
+          [id]="field.name"
+          class="w-full"
+          styleClass="w-full"
+          [required]="field.isRequired"
+          [toggleMask]="true"
+        >
+        </p-password>
+
+        <input
+          *ngIf="field.type === 'input-email'"
+          [(ngModel)]="configuration.model[field.name]"
+          [name]="field.name"
+          pInputText
+          [id]="field.name"
+          class="w-full"
+          type="text"
+          [email]="true"
+          [required]="field.isRequired"
+        />
+
+        <p-inputNumber
+          *ngIf="field.type === 'input-number'"
+          [(ngModel)]="configuration.model[field.name]"
+          [name]="field.name"
+          [id]="field.name"
+          styleClass="w-full"
+          [required]="field.isRequired"
+        >
+        </p-inputNumber>
+
+        <p-inputNumber
+          *ngIf="field.type === 'input-phone'"
+          [(ngModel)]="configuration.model[field.name]"
+          [name]="field.name"
+          [id]="field.name"
+          styleClass="w-full"
+          [useGrouping]="false"
+          [required]="field.isRequired"
+        >
+        </p-inputNumber>
+
+        <p-calendar
+          *ngIf="field.type === 'input-date'"
+          [name]="field.name"
+          [(ngModel)]="configuration.model[field.name]"
+          styleClass="w-full"
+          [inputId]="field.name"
+          dateFormat="yy-mm-dd"
+          [monthNavigator]="true"
+          [yearNavigator]="true"
+          [yearRange]="field.startYear+':'+field.endYear"
+          [required]="field.isRequired"
+        >
+        </p-calendar>
+
+        <p-dropdown
+          *ngIf="field.type === 'input-select'"
+          [name]="field.name"
+          [(ngModel)]="configuration.model[field.name]"
+          styleClass="w-full"
+          [inputId]="field.name"
+          [options]="field.values"
+          placeholder="Seleccione..."
+          optionLabel="name"
+          optionValue="value"
+          [required]="field.isRequired"
+        >
+        </p-dropdown>
+
+        <p-multiSelect
+          *ngIf="field.type === 'input-select-filter'"
+          [options]="field.values"
+          [name]="field.name"
+          [(ngModel)]="configuration.model[field.name]"
+          defaultLabel="Seleccione..."
+          optionLabel="name"
+          optionValue="value"
+          styleClass="w-full"
+          [selectionLimit]="1"
+          selectedItemsLabel="{0} items selected">
+        </p-multiSelect>
+
+        <textarea
+          *ngIf="field.type === 'input-textarea'"
+          [name]="field.name"
+          [(ngModel)]="configuration.model[field.name]"
+          class="w-full"
+          pInputTextarea
+          [required]="field.isRequired"
+        ></textarea>
+        <small *ngIf="field.invalid" class="p-error">{{ field.label }} no es válido</small>
+    </div>
+  </div>
+</div>

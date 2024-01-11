@@ -1,0 +1,73 @@
+<div class="container">
+  <div>
+    <app-header title="Mi Perfil"></app-header>
+  </div>
+  <div class="mt-5">
+    <form (ngSubmit)="updateProfile(fProfile)" #fProfile="ngForm">
+      <div class="mb-3 grid">
+        <label for="web" class="col-12 md:col-4 md:mb-0">
+          <strong>
+            Web
+          </strong>
+        </label>
+        <div class="col-12 md:col-8">
+          <div>
+            <input [(ngModel)]="user.web" name="web" pInputText class="w-full" type="text" />
+          </div>
+          <div class="mt-1">
+            <small class="mt-2">Ejemplo: https://mipagina.com</small>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 grid">
+        <label for="web" class="col-12 md:col-4 md:mb-0">
+          <strong>
+            Facebook
+          </strong>
+        </label>
+        <div class="col-12 md:col-8">
+          <div>
+            <input [(ngModel)]="user.facebook" name="facebook" pInputText class="w-full" type="text" />
+          </div>
+          <div class="mt-1">
+            <small class="mt-2">Ejemplo: https://facebook.com/perfil</small>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 grid">
+        <label for="web" class="col-12 md:col-4 md:mb-0">
+          <strong>
+            Instagram
+          </strong>
+        </label>
+        <div class="col-12 md:col-8">
+          <div>
+            <input [(ngModel)]="user.instagram" name="instagram" pInputText class="w-full" type="text" />
+          </div>
+          <div class="mt-1">
+            <small class="mt-2">Ejemplo: https://instagram.com/perfil</small>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 grid">
+        <label for="web" class="col-12 md:col-4 md:mb-0">
+          <strong>
+            Twitter
+          </strong>
+        </label>
+        <div class="col-12 md:col-8">
+          <div>
+            <input [(ngModel)]="user.twitter" name="twitter" pInputText class="w-full" type="text" />
+          </div>
+          <div class="mt-1">
+            <small class="mt-2">Ejemplo: https://twitter.com/perfil</small>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <button pButton pRipple type="submit" label="Guardar" class="p-button-raised p-button-success">
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

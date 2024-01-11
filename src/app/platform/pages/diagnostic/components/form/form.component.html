@@ -1,0 +1,4 @@
+<form (ngSubmit)="validateForm(form)" #form="ngForm">
+  <app-fields ngModelGroup="fields" [configuration]="configuration"></app-fields>
+  <app-buttons [configuration]="configuration" [disabled]="disabled"></app-buttons>
+</form>

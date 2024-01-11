@@ -1,0 +1,15 @@
+<app-head [title]="customTitle" [subtitle]="subtitle"></app-head>
+
+<div class="card">
+  <app-form
+    [configuration]="configuration"
+    [disabled]="disabled"
+    (onSubmit)="validateForm($event)">
+  </app-form>
+  <app-modal
+    (onClose)="closeModal($event)"
+    [message]="message"
+    [showModal]="showModal"
+    [header]="header"
+  ></app-modal>
+</div>

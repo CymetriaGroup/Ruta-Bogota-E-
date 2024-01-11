@@ -1,0 +1,67 @@
+<div class="text-center" *ngIf="error">
+  <div class="text-center">
+    <img src="./assets/img/404.png" />
+  </div>
+  <h1>{{ error }}</h1>
+</div>
+
+<div *ngIf="user">
+  <div class="grid">
+    <div class="col-12 md:col-3">
+      <div id="sidebar">
+        <div class="text-center">
+          <img style="height: 100px" class="img-fluid" src="./assets/img/200.png" />
+        </div>
+        <div class="white text-center">
+          <h1>
+            Bienvenido(a) a Ruta Bogotá E:
+          </h1>
+          <h2>
+            {{ user.first_name }} {{ user.last_name }}
+          </h2>
+          <h2>
+            {{ user.company }}
+          </h2>
+          <div class="text-center mb-3">
+            <a
+              href="https://plataforma.rutabogotae.co/"
+              pButton
+              label="Ingresar a la plataforma"
+              class="p-button p-button-success">
+            </a>
+          </div>
+          <div class="text-center">
+            Te enviaremos a tu correo electrónico las credenciales para ingresar a la plataforma de Ruta Bogotá e
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <app-header [title]="title" [subtitle]="subtitle"></app-header>
+      <div class="grid">
+        <div class="col-3"></div>
+        <div class="col-12 md:col-6">
+          <div class="grid">
+            <div class="col-12">
+              <p-chart type="radar" [data]="data" [options]="radarOptions"></p-chart>
+              <div class="text-center mb-3">
+                <small>La gráfica indica el nivel de avance en cada una de las áreas funcionales.<br />La calificación es de 1 a 100 siendo 100 el estado ideal.</small>
+              </div>
+              <div class="text-center">
+                El diagnóstico estará disponible en la siguiente URL:
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3"></div>
+      </div>
+      <div class="text-center" id="url">
+        <strong>{{ url }}</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center" id="urlMobile">
+  <strong>{{ url }}</strong>
+</div>
