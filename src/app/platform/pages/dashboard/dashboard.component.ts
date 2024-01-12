@@ -29,19 +29,19 @@ export class DashboardComponent implements OnInit {
       tooltip: 'Es la primera estación de nuestra Ruta. Es el primer requisito para iniciar tu ruta personalizada.'
     },
     {
-      label: "Academia",
+      label: "Bootcamps",
       disabled: false,
       icon: 'pi pi-check-circle',
       tooltip: 'Es la tercera estación de la Ruta. Debes haber pasado por un colaborarorio para iniciar tu formación personalizada.'
     },
     {
-      label: "Colaboratorios",
+      label: "Hackatons",
       disabled: false,
       icon: 'pi pi-check-circle',
       tooltip: 'Es la segunda estación de nuestra Ruta. Debes tener tu diagnóstico realizado para poder agendar tu colaborarorio.'
     },
     {
-      label: "Conexiones",
+      label: "Empleatons",
       disabled: false,
       icon: 'pi pi-check-circle',
       tooltip: 'Es la cuarta estación de la Ruta. Debes haber pasado por la Academia E y cumplir otros requisitos para llegar a la estación de conexiones de mercado.'
@@ -49,11 +49,11 @@ export class DashboardComponent implements OnInit {
   ];
 
   banners = [
-    './assets/img/dashboard/banner_networking2.jpg',
+    // './assets/img/dashboard/banner_networking2.jpg',
     './assets/img/dashboard/banner000.jpeg',
-    './assets/img/dashboard/banner002.jpeg',
-    './assets/img/dashboard/banner02.jpg',
-    './assets/img/dashboard/banner03.jpg'
+    // './assets/img/dashboard/banner002.jpeg',
+    // './assets/img/dashboard/banner02.jpg',
+    // './assets/img/dashboard/banner03.jpg'
   ];
 
   reviews: Review[] = [];
