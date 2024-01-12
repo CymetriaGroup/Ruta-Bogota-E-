@@ -1,5 +1,5 @@
 #backgroundLogin {
-  background-image: url('../../../../assets/img/login/background.jpg');
+  background-image: url("../../../../assets/img/login/talentoTechBackground.png");
   height: 100vh;
   background-position: center;
   background-size: cover;
@@ -10,7 +10,7 @@ label {
 }
 
 .forgot-link {
-  color: rgba(39,44,51,.7);
+  color: rgba(39, 44, 51, 0.7);
   text-decoration: underline;
   cursor: pointer;
 }

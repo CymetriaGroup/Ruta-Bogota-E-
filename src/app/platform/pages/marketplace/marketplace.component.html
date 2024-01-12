@@ -1,53 +1,55 @@
 <div class="container">
+  <app-header title="Marketplace"></app-header>
 
-    <app-header title="Marketplace"></app-header>
-
+  <div>
     <div>
-      <div>
-        <div class="text-center">
-          <div>
-            <strong>
-              Bienvenido a la tienda de beneficios de Ruta Bogotá é.
-            </strong>
-          </div>
-          <div class="mt-1">
-            Aquí podrás redimir tus puntos ganados en la ruta. Aplican <a href="https://rutabogotae.co/documents/terminos_y_condiciones_ruta_bogotae.pdf" target="_blank">términos y condiciones</a>.
-          </div>
+      <div class="text-center">
+        <div>
+          <strong>
+            Bienvenido a la tienda de beneficios de Talento Tech.
+          </strong>
         </div>
+        <div class="mt-1">
+          Aquí podrás redimir tus puntos ganados en la ruta. Aplican
+          <a
+            href="https://rutabogotae.co/documents/terminos_y_condiciones_ruta_bogotae.pdf"
+            target="_blank"
+            >términos y condiciones</a
+          >.
+        </div>
+      </div>
       <div class="grid mt-3">
         <div class="md:col-3 col-12 mb-3" *ngFor="let item of marketplace">
           <div class="container-marketplace">
-            <div class="img-container" [style]="getBackground(item.image, item.stock)">
-            </div>
+            <div
+              class="img-container"
+              [style]="getBackground(item.image, item.stock)"
+            ></div>
             <div class="p-4">{{ item.name }}</div>
             <div class="grid container-marketplace-name m-0 pl-2 pr-2">
               <div class="md:col-6 col-12 mt-1">
                 <i class="fas fa-trophy text-white-50"></i>
-                <small class="text-white-50">
-                  {{ item.points }} puntos
-                </small>
+                <small class="text-white-50"> {{ item.points }} puntos </small>
               </div>
               <div class="md:col-6 col-12 text-right">
                 <button
-                    *ngIf="!item.redeemed && item.stock > 0"
-                    (click)="redeemProduct(item)"
-                    pButton
-                    pRipple
-                    type="button"
-                    label="REDIMIR"
-                    class="p-button-raised p-button-success"
-                    style="font-size: 10px;font-weight: bold;"
-                  >
-                </button>
+                  *ngIf="!item.redeemed && item.stock > 0"
+                  (click)="redeemProduct(item)"
+                  pButton
+                  pRipple
+                  type="button"
+                  label="REDIMIR"
+                  class="p-button-raised p-button-success"
+                  style="font-size: 10px; font-weight: bold"
+                ></button>
                 <small *ngIf="item.stock <= 0" class="text-white-50">
-                  <strong>
-                    Agotado
-                  </strong>
+                  <strong> Agotado </strong>
                 </small>
-                <small *ngIf="item.redeemed && item.stock > 0" class="text-white-50">
-                  <strong>
-                    Producto redimido
-                  </strong>
+                <small
+                  *ngIf="item.redeemed && item.stock > 0"
+                  class="text-white-50"
+                >
+                  <strong> Producto redimido </strong>
                 </small>
               </div>
             </div>
@@ -55,21 +57,25 @@
         </div>
       </div>
     </div>
-
   </div>
-
 </div>
 
 <p-toast></p-toast>
 
 <p-dialog
-  *ngIf="productSelected && productSelected.name !== '' && productSelected.points > 0 && productSelected.id > 0"
+  *ngIf="
+    productSelected &&
+    productSelected.name !== '' &&
+    productSelected.points > 0 &&
+    productSelected.id > 0
+  "
   [header]="productSelected.name"
   [(visible)]="showRedeemModal"
-  [style]="{width: '50vw'}"
+  [style]="{ width: '50vw' }"
 >
   <label>
-    ¿Está seguro de redimir este beneficio? Se descontarán <strong>{{ productSelected.points }}</strong> puntos de su saldo.
+    ¿Está seguro de redimir este beneficio? Se descontarán
+    <strong>{{ productSelected.points }}</strong> puntos de su saldo.
   </label>
   <ng-template pTemplate="footer">
     <p-button
