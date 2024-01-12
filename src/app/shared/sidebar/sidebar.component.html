@@ -4,19 +4,18 @@
   </div>
 
   <div class="text-center mt-2 mb-4" id="nameContainer">
-    <div class="name h2">{{ user.first_name | titlecase }} {{ user.last_name | titlecase }}</div>
+    <div class="name h2">
+      {{ user.first_name | titlecase }} {{ user.last_name | titlecase }}
+    </div>
     <div class="company">{{ user.company }}</div>
   </div>
 
   <div>
-    <div
-      *ngFor="let item of menuItems"
-      class="mb-4"
-    >
+    <div *ngFor="let item of menuItems" class="mb-4">
       <a
-      [routerLink]="item.link"
-      routerLinkActive="menu-active-item"
-      class="menu-item"
+        [routerLink]="item.link"
+        routerLinkActive="menu-active-item"
+        class="menu-item"
       >
         <i [class]="item.icon"></i>
         {{ item.label }}
@@ -25,42 +24,32 @@
   </div>
   <hr />
   <div class="mt-4">
-    <div class="mb-4">
+    <!-- <div class="mb-4">
       <a
       class="menu-item"
       routerLink="./video"
       >
         <i class="mr-3 fas fa-video"></i>Video tutorial
       </a>
-    </div>
-    <div
-      *ngFor="let item of manualItems"
-      class="mb-4"
-    >
-      <a
-      class="menu-item"
-      [href]="item.link"
-      target="_blank"
-      >
+    </div> -->
+    <div *ngFor="let item of manualItems" class="mb-4">
+      <a class="menu-item" [href]="item.link" target="_blank">
         <i [class]="item.icon"></i>{{ item.label }}
       </a>
     </div>
   </div>
   <hr />
   <button
-      pButton
-      pRipple
-      type="button"
-      label="Cerrar sesión"
-      class="p-button-danger mt-3 w-full"
-      (click)="logout()"
-    >
-  </button>
+    pButton
+    pRipple
+    type="button"
+    label="Cerrar sesión"
+    class="p-button-danger mt-3 w-full"
+    (click)="logout()"
+  ></button>
   <div class="text-center mt-3">
     <a class="text-white" href="mailto:contacto@rutabogotae.co">
-      <small>
-        contacto@rutabogotae.co
-      </small>
+      <small> contacto@rutabogotae.co </small>
     </a>
   </div>
 </div>

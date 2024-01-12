@@ -26,11 +26,11 @@ export class SidebarComponent implements OnInit {
       icon: 'mr-3 fas fa-pencil-alt',
       link: 'https://cymetria.typeform.com/to/rybOxg21'
     },
-    {
-      label: 'Manual de usuario',
-      icon: 'mr-3 fas fa-book',
-      link: 'https://rutabogotae.co/docs/manual_usuario_rutae.pdf',
-    },
+    // {
+    //   label: 'Manual de usuario',
+    //   icon: 'mr-3 fas fa-book',
+    //   link: 'https://rutabogotae.co/docs/manual_usuario_rutae.pdf',
+    // },
     {
       label: 'Preguntas frecuentes',
       icon: 'mr-3 fas fa-question-circle',
