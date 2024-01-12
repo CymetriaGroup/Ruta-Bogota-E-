@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  hostFull: 'http://localhost:8000',
-  host: 'http://localhost:8000/api',
+  // hostFull: 'http://localhost:8000',
+  // host: 'http://localhost:8000/api',
+    hostFull: 'https://api.campus.cymetria.com/',
+  host: 'https://api.campus.cymetria.com/api',
   version: 'v1',
   endpoints: {
     areas: '/areas',

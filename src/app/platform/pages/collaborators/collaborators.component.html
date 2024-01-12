@@ -1,5 +1,4 @@
 <div class="container">
-
   <div *ngIf="!isRegisteredUser">
     <div class="text-center">
       <div>
@@ -7,7 +6,8 @@
       </div>
       <div class="text-center mt-3">
         <h3>
-          Recuerda que debes completar el auto-diagnóstico (primera estación) para poder habilitar este y los siguientes módulos.
+          Recuerda que debes completar el auto-diagnóstico (primera estación)
+          para poder habilitar este y los siguientes módulos.
         </h3>
       </div>
     </div>
@@ -15,33 +15,44 @@
 
   <div *ngIf="isRegisteredUser">
     <div class="mt-5">
-      <app-header title="Colaboratorios*"></app-header>
+      <app-header title="Hackatons*"></app-header>
       <div class="mb-3">
         <small class="f-13">
           <i class="fas fa-exclamation-triangle mr-1 yellow"></i>
-          <strong>NOTA IMPORTANTE:</strong> Sólo puedes agendar y asistir a un colaboratorio.
+          <strong>NOTA IMPORTANTE:</strong> Sólo puedes agendar y asistir a un
+          colaboratorio.
         </small>
       </div>
       <app-table
-        *ngIf="getCollaborativesActives().length && !registeredCollaborators.length && !completedCollaborators.length"
+        *ngIf="
+          getCollaborativesActives().length &&
+          !registeredCollaborators.length &&
+          !completedCollaborators.length
+        "
         (onSignUpCollaborative)="signUpCollaborative($event)"
         [collaboratives]="getCollaborativesActives()"
-        kind="collaboratives">
+        kind="collaboratives"
+      >
       </app-table>
       <div class="empty" *ngIf="!getCollaborativesActives().length">
         No hay colaboratorios disponibles
       </div>
-      <div class="empty" *ngIf="registeredCollaborators.length || completedCollaborators.length">
+      <div
+        class="empty"
+        *ngIf="registeredCollaborators.length || completedCollaborators.length"
+      >
         Ya has agendado/tomado un colaboratorio
       </div>
     </div>
 
     <div class="mt-5">
-      <app-header title="Colaboratorios agendados"></app-header>
+      <app-header title="Hackatons agendados"></app-header>
       <div class="mb-3">
         <small class="f-13">
           <i class="fas fa-exclamation-triangle mr-1 yellow"></i>
-          <strong>NOTA IMPORTANTE:</strong> Recuerda que debes ingresar el código de 6 dígitos que te dieron en el colaboratorio para reclamar 100 puntos.
+          <strong>NOTA IMPORTANTE:</strong> Recuerda que debes ingresar el
+          código de 6 dígitos que te dieron en el colaboratorio para reclamar
+          100 puntos.
         </small>
       </div>
       <app-table
@@ -49,7 +60,8 @@
         [collaboratives]="registeredCollaborators"
         (onAssistanceCollaborative)="assistanceCollaborative($event)"
         (onDeclineCollaborative)="declineCollaborative($event)"
-        kind="registered">
+        kind="registered"
+      >
       </app-table>
       <div class="empty" *ngIf="!registeredCollaborators.length">
         No hay colaboratorios agendados
@@ -57,49 +69,62 @@
     </div>
 
     <div class="mt-5">
-      <app-header title="Colaboratorios tomados"></app-header>
+      <app-header title="Hackatons tomados"></app-header>
       <app-table
         *ngIf="completedCollaborators.length"
         [collaboratives]="completedCollaborators"
-        kind="completed">
+        kind="completed"
+      >
       </app-table>
       <div class="empty" *ngIf="!completedCollaborators.length">
         No hay colaboratorios completados
       </div>
     </div>
   </div>
-
 </div>
 
-<p-dialog *ngIf="selectedCollaborative" [header]="selectedCollaborative.name" [(visible)]="showModalCode" [style]="{width: '50vw'}">
-    <div>
-      <label>Ingresa el código de la reunión para registrar la asistencia y acumular tus puntos.</label>
-    </div>
-    <div class="mt-1 mb-2">
-      <small>
-        <strong>Nota: </strong>Recuerda que debes ingresar el código de 6 dígitos que te dieron en el colaboratorio para reclamar 100 puntos.
-      </small>
-    </div>
-    <input
-      pInputText
-      type="text"
-      [(ngModel)]="code"
-      class="w-full mt-2"
-      placeholder="Ingresa código"
-
-    />
-    <ng-template pTemplate="footer">
-      <p-button
-        icon="pi pi-check"
-        (click)="sendAssistanceCollaborative()"
-        label="Enviar"
-        styleClass="p-button-text"
-      >
-      </p-button>
-    </ng-template>
+<p-dialog
+  *ngIf="selectedCollaborative"
+  [header]="selectedCollaborative.name"
+  [(visible)]="showModalCode"
+  [style]="{ width: '50vw' }"
+>
+  <div>
+    <label
+      >Ingresa el código de la reunión para registrar la asistencia y acumular
+      tus puntos.</label
+    >
+  </div>
+  <div class="mt-1 mb-2">
+    <small>
+      <strong>Nota: </strong>Recuerda que debes ingresar el código de 6 dígitos
+      que te dieron en el colaboratorio para reclamar 100 puntos.
+    </small>
+  </div>
+  <input
+    pInputText
+    type="text"
+    [(ngModel)]="code"
+    class="w-full mt-2"
+    placeholder="Ingresa código"
+  />
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="sendAssistanceCollaborative()"
+      label="Enviar"
+      styleClass="p-button-text"
+    >
+    </p-button>
+  </ng-template>
 </p-dialog>
 
-<p-dialog *ngIf="selectedCollaborative" [header]="selectedCollaborative.name" [(visible)]="showModalDecline" [style]="{width: '50vw'}">
+<p-dialog
+  *ngIf="selectedCollaborative"
+  [header]="selectedCollaborative.name"
+  [(visible)]="showModalDecline"
+  [style]="{ width: '50vw' }"
+>
   <label>
     ¿Estás seguro de querer cancelar este colaboratorio y agendar uno nuevo?
   </label>

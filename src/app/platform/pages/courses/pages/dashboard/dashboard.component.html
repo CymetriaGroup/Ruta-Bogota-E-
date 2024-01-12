@@ -1,5 +1,4 @@
 <div class="container">
-
   <div *ngIf="!isRegisteredUser">
     <div class="text-center">
       <div>
@@ -7,7 +6,9 @@
       </div>
       <div class="text-center mt-3">
         <h3>
-          Recuerda que debes completar el auto-diagnóstico y al menos un colaboratorio (primera y segunda estación) para poder habilitar este y los siguientes módulos.
+          Recuerda que debes completar el auto-diagnóstico y al menos un
+          colaboratorio (primera y segunda estación) para poder habilitar este y
+          los siguientes módulos.
         </h3>
       </div>
     </div>
@@ -15,25 +16,29 @@
 
   <div *ngIf="isRegisteredUser">
     <div>
-      <h1 class="welcome">Academia E</h1>
+      <h1 class="welcome">Bootcamps</h1>
     </div>
     <div class="mb-2">
       <small class="f-13">
         <i class="fas fa-exclamation-triangle mr-1 yellow"></i>
-        <strong>NOTA IMPORTANTE:</strong> Debes tomar los cursos y desarrollar las evaluaciones para acumular tus puntos.
+        <strong>NOTA IMPORTANTE:</strong> Debes tomar los cursos y desarrollar
+        las evaluaciones para acumular tus puntos.
       </small>
     </div>
     <div>
-
       <div class="mt-4">
         <app-header
-          [title]="areCoursesCompleted() && suggestedCourses > 0 ? 'Temas' : 'Cursos sugeridos'"
+          [title]="
+            areCoursesCompleted() && suggestedCourses > 0
+              ? 'Temas'
+              : 'Cursos sugeridos'
+          "
         >
         </app-header>
       </div>
 
       <div *ngIf="suggestedCourses > 0">
-        <div *ngFor="let category of categories; let i = index;">
+        <div *ngFor="let category of categories; let i = index">
           <div class="grid mt-2">
             <div class="md:col-1 col-2 text-center">
               <div class="container-index">
@@ -70,23 +75,21 @@
                 [responsiveOptions]="responsiveOptions"
               >
                 <ng-template let-course pTemplate="item">
-                  <div
-                    class="container-course"
-                    (click)="handleCourse(course)"
-                  >
+                  <div class="container-course" (click)="handleCourse(course)">
                     <div class="relative">
                       <div>
                         <img class="img-fluid" [src]="course.image | image" />
                       </div>
                       <div class="is-completed" *ngIf="isCompleted(course)">
-                        Curso completado <i class="fas fa-check-circle text-success"></i>
+                        Curso completado
+                        <i class="fas fa-check-circle text-success"></i>
                       </div>
                     </div>
                     <div class="course-name card-title">
                       {{ course.name }}
                     </div>
                     <div class="text-right p-2" *ngIf="course.likes > 0">
-                      <small style="color: #888;">
+                      <small style="color: #888">
                         <i class="fa fa-user"></i>
                         {{ course.likes }}
                       </small>
@@ -102,7 +105,9 @@
                 <div
                   *ngFor="let course of category.courses"
                   class="container-course m-0 md:col-3 col-12"
-                  routerLink="/platform/courses/{{ course.category_slug }}/{{ course.id }}-{{ course.slug }}"
+                  routerLink="/platform/courses/{{ course.category_slug }}/{{
+                    course.id
+                  }}-{{ course.slug }}"
                 >
                   <div>
                     <img class="img-fluid" [src]="course.image | image" />
@@ -112,7 +117,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
             <div class="ml-5" *ngIf="!category.courses.length">
               <small>No hay cursos definidos</small>
@@ -124,10 +128,8 @@
       <div *ngIf="!suggestedCourses">
         <strong>No tienes cursos sugeridos</strong>
       </div>
-
     </div>
   </div>
-
 </div>
 
 <app-footer></app-footer>

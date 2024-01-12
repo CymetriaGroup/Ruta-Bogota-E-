@@ -58,26 +58,26 @@ export class SidebarComponent implements OnInit {
         link: '/platform/dashboard',
         disabled: false
       },
+      // {
+      //   label: 'Auto-diagnóstico',
+      //   icon: 'mr-3 fas fa-route',
+      //   link: isRegisteredUser ? '/platform/results' : '/platform/diagnostic',
+      //   disabled: false
+      // },
       {
-        label: 'Auto-diagnóstico',
-        icon: 'mr-3 fas fa-route',
-        link: isRegisteredUser ? '/platform/results' : '/platform/diagnostic',
-        disabled: false
-      },
-      {
-        label: 'Academia E',
+        label: 'Bootcamps',
         icon: 'mr-3 fas fa-laptop',
         link: '/platform/courses',
         disabled: false
       },
       {
-        label: 'Colaboratorios',
+        label: 'Hackatones',
         icon: 'mr-3 fas fa-user-friends',
         link: '/platform/collaborators',
         disabled: true
       },
       {
-        label: 'Conexiones',
+        label: 'Empleatones',
         icon: 'mr-3 far fa-handshake',
         link: '/platform/connections',
         disabled: true
